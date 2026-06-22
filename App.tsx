@@ -1,41 +1,26 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
 
-  // string 
-  const [name, setName] = useState<string>('hoidan it');
+  const [name, setName] = useState<string>('');
 
-  // number 
-  const [age, setAge] = useState<number>(12)
-
-
-  // null. undifine , boolean   // không hiện ra màn hình 
-  const test = false
-
-
-  // object, array 
-  const [persion, setPersion] = useState({
-    name: 'nguyen van a',
-    age: 20
-  })
-
-  const [array, setArray] = useState([
-    {
-      name: 'nguyen van b',
-      age: 22
-    }
-  ])
 
   return (
     <View style={styles.container}>
       <View>
+        <TextInput
+          onChangeText={v => setName(v)}
+          value={name}
+          autoCapitalize='none'
+          autoCorrect={false}
+          // keyboardType='numeric'
+          // maxLength={2}
+          // multiline
+          style={styles.input} />
         <Text style={styles.text}>{name}</Text>
-        <Text style={styles.text}>{persion.name}</Text>
-        <Text style={styles.text}>{persion.age}</Text>
-        <Text style={styles.text}>{JSON.stringify(persion)}</Text>
-        <Text style={styles.text}>{JSON.stringify(array)}</Text>
       </View>
+      <Button title='Add new'/>
       <Text style={styles.text}>hello word
         <Text style={styles.duwatruong}> duwatruong</Text>
       </Text>
@@ -44,6 +29,12 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  input: {
+    borderColor: 'violet',
+    borderWidth: 1,
+    padding: 10,
+  },
+
   duwatruong: {
     color: 'green'
   },
