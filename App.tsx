@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, FlatList, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
 
@@ -40,7 +40,24 @@ export default function App() {
         onPress={() => alert('tab me')}
       />
 
-      <ScrollView style={{ marginTop: 20, borderColor: 'red', borderWidth: 1 }}>
+
+      <FlatList
+        style={{ marginTop: 20, borderColor: 'red', borderWidth: 1 }}
+        data={todoList}
+        keyExtractor={item => item.id + ""}
+        renderItem={({ item }) => {
+          return (
+            <Text
+              style={styles.todo}
+            >
+              {item.title}
+            </Text>
+          )
+        }}
+      />
+
+
+      {/* <ScrollView style={{ marginTop: 20, borderColor: 'red', borderWidth: 1 }}>
         {todoList.map(todo => {
           return (
             <Text
@@ -51,7 +68,7 @@ export default function App() {
             </Text>
           )
         })}
-      </ScrollView>
+      </ScrollView> */}
 
     </View>
   );
