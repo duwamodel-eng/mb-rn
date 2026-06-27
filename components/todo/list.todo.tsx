@@ -1,4 +1,4 @@
-import { FlatList } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 import { Text, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
@@ -13,10 +13,12 @@ const styles = StyleSheet.create({
 
 interface IProps {
   todoList: ITodo[]
+  deleteTodo: (v: number) => void
 }
 
 const ListTodo = (props: IProps) => {
-  const { todoList } = props
+  const { todoList, deleteTodo } = props
+  // console.log(todoList)
   return (
     <>
       <FlatList
@@ -25,11 +27,16 @@ const ListTodo = (props: IProps) => {
         keyExtractor={item => item.id + ""}
         renderItem={({ item }) => {
           return (
-            <Text
-              style={styles.todo}
-            >
-              {item.title}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                deleteTodo(item.id)
+              }}>
+              <Text
+                style={styles.todo}
+              >
+                {item.title}
+              </Text>
+            </TouchableOpacity>
           )
         }}
       />

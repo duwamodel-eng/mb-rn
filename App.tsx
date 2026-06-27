@@ -5,26 +5,33 @@ import ListTodo from './components/todo/list.todo';
 
 export default function App() {
 
-  const [todoList, setTodoList] = useState<ITodo[]>([
-    { id: 1, title: "Learn React Native" },
-    { id: 2, title: "Learn React.js" },
-    { id: 3, title: "Watching Netflix" },
-    { id: 4, title: "Playing ESport" },
-    { id: 5, title: "Subscribe Hỏi Dân IT :v" },
-    { id: 6, title: "Watching Youtube" },
-    { id: 7, title: "CR 7" },
-    { id: 8, title: "Tony Kroos" },
-    { id: 9, title: "Nine" },
-    { id: 10, title: "M10" },
-  ])
+  const [todoList, setTodoList] = useState<ITodo[]>([])
+
+  function getRandomizer(bottom: number, top: number) {
+    return Math.floor(Math.random() * (1 + top - bottom)) + bottom;
+  }
+
+  const addTodo = (text: string) => {
+    const todo = { id: getRandomizer(1, 10000), title: text }
+    setTodoList([...todoList, todo])
+  }
+
+  const deletedTodo=(id:number) => {
+    const newTodo=todoList.filter(todo => todo.id != id)
+    setTodoList(newTodo)
+  }
 
   return (
     <View style={styles.container}>
 
-      <InputTodo />
-      <ListTodo
-        todoList={todoList} />
+      <InputTodo
+        addTodo={addTodo}
+      />
 
+      <ListTodo
+        todoList={todoList} 
+        deleteTodo={deletedTodo}
+        />
     </View>
   );
 }
@@ -35,7 +42,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     // alignItems: 'center',
     // justifyContent: 'center',
+    fontSize: 60,
+    color: 'red',
     paddingTop: 50,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    marginTop: 50
   }
 });
