@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Keyboard, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import InputTodo from './components/todo/input.todo';
 import ListTodo from './components/todo/list.todo';
 
@@ -16,23 +16,26 @@ export default function App() {
     setTodoList([...todoList, todo])
   }
 
-  const deletedTodo=(id:number) => {
-    const newTodo=todoList.filter(todo => todo.id != id)
+  const deletedTodo = (id: number) => {
+    const newTodo = todoList.filter(todo => todo.id != id)
     setTodoList(newTodo)
   }
 
   return (
-    <View style={styles.container}>
+    <TouchableWithoutFeedback
+      onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
 
-      <InputTodo
-        addTodo={addTodo}
-      />
-
-      <ListTodo
-        todoList={todoList} 
-        deleteTodo={deletedTodo}
+        <InputTodo
+          addTodo={addTodo}
         />
-    </View>
+
+        <ListTodo
+          todoList={todoList}
+          deleteTodo={deletedTodo}
+        />
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
