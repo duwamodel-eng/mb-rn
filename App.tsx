@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Keyboard, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import InputTodo from './components/todo/input.todo';
 import ListTodo from './components/todo/list.todo';
+import FlexBox from './components/todo/flexbox';
 
 export default function App() {
 
@@ -22,20 +23,21 @@ export default function App() {
   }
 
   return (
-    <TouchableWithoutFeedback
-      onPress={() => Keyboard.dismiss()}>
-      <View style={styles.container}>
+    <FlexBox />
+    // <TouchableWithoutFeedback
+    //   onPress={() => Keyboard.dismiss()}>
+    //   <View style={styles.container}>
 
-        <InputTodo
-          addTodo={addTodo}
-        />
+    //     <InputTodo
+    //       addTodo={addTodo}
+    //     />
 
-        <ListTodo
-          todoList={todoList}
-          deleteTodo={deletedTodo}
-        />
-      </View>
-    </TouchableWithoutFeedback>
+    //     <ListTodo
+    //       todoList={todoList}
+    //       deleteTodo={deletedTodo}
+    //     />
+    //   </View>
+    // </TouchableWithoutFeedback>
   );
 }
 

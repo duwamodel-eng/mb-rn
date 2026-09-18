@@ -21,13 +21,16 @@ const styles = StyleSheet.create({
 
 interface Iprops {
   title: string,
-  onPress: any
+  onPress: () => void
 }
 const Minebutton = (props: Iprops) => {
   const { title, onPress } = props
   return (
     <Pressable
-      style={({ pressed }) => ({ opacity: pressed === true ? 0.5 : 1 })}
+      style={({ pressed }) => ({
+        opacity: pressed === true ? 0.5 : 1,
+        alignSelf: "flex-start"
+      })}
       onPress={onPress}
     >
       <View style={styles.btnContainer}>
