@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button, TextInput, View, StyleSheet, Alert } from "react-native";
+import Minebutton from "../button/mine.button";
+
 
 const styles = StyleSheet.create({
   todoInput: {
@@ -41,15 +43,15 @@ const InputTodo = (props: Iprops) => {
 
   return (
     <>
-      <View>
+      <View style={{ marginBottom: 20 }}>
         <TextInput
           onChangeText={v => setName(v)}
           value={name}
           autoCapitalize='none'
           autoCorrect={false}
           style={styles.todoInput} />
-        <Button
-          title='Add new'
+        <Minebutton
+          title="add new"
           onPress={handleAddNewTodo}
         />
       </View>
