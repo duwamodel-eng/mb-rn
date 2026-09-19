@@ -1,56 +1,39 @@
 import { useState } from 'react';
-import { Keyboard, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
-import InputTodo from './components/todo/input.todo';
-import ListTodo from './components/todo/list.todo';
-import FlexBox from './components/todo/flexbox';
+import { Keyboard, StyleSheet, TouchableWithoutFeedback, View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export default function App() {
 
-  const [todoList, setTodoList] = useState<ITodo[]>([])
+  const Stack = createNativeStackNavigator();
 
-  function getRandomizer(bottom: number, top: number) {
-    return Math.floor(Math.random() * (1 + top - bottom)) + bottom;
+  function HomeScreen() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Home Screen</Text>
+      </View>
+    );
   }
 
-  const addTodo = (text: string) => {
-    const todo = { id: getRandomizer(1, 10000), title: text }
-    setTodoList([...todoList, todo])
+  function DetailsScreen() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Details Screen</Text>
+      </View>
+    );
   }
 
-  const deletedTodo = (id: number) => {
-    const newTodo = todoList.filter(todo => todo.id != id)
-    setTodoList(newTodo)
-  }
 
   return (
-    <FlexBox />
-    // <TouchableWithoutFeedback
-    //   onPress={() => Keyboard.dismiss()}>
-    //   <View style={styles.container}>
 
-    //     <InputTodo
-    //       addTodo={addTodo}
-    //     />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
 
-    //     <ListTodo
-    //       todoList={todoList}
-    //       deleteTodo={deletedTodo}
-    //     />
-    //   </View>
-    // </TouchableWithoutFeedback>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    fontSize: 60,
-    color: 'red',
-    paddingTop: 50,
-    paddingHorizontal: 20,
-    marginTop: 50
-  }
-});
+
