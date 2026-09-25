@@ -3,10 +3,13 @@ import { Keyboard, StyleSheet, TouchableWithoutFeedback, View, Text, Button } fr
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import 'react-native-gesture-handler';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 export default function App() {
 
   const Stack = createNativeStackNavigator();
+  const Drawer = createDrawerNavigator();
 
   function HomeScreen(props: any) {
     const navigation = props.navigation
@@ -61,7 +64,7 @@ export default function App() {
   return (
 
     <NavigationContainer>
-      <Stack.Navigator
+      {/* <Stack.Navigator
         screenOptions={{
           headerStyle: {
             backgroundColor: '#f4511e',
@@ -85,7 +88,18 @@ export default function App() {
 
           })}
         />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
+      <Drawer.Navigator initialRouteName='hoidanit'>
+        <Drawer.Screen name="Article" component={DetailsScreen} />
+        <Drawer.Screen
+          name="hoidanit"
+          component={HomeScreen}
+          options={{
+            drawerLabel: 'trang chu',
+            headerTitle: 'trang chu'
+          }}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
 
   );
