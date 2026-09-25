@@ -48,7 +48,7 @@ export default function App() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Details Screen</Text>
-        <Text>user id ={route.params.userId}</Text>
+        <Text>user id ={route?.params?.userId}</Text>
         <Button
           onPress={() => navigation.goBack()}
           title="go back home"
@@ -61,9 +61,30 @@ export default function App() {
   return (
 
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="hoidanit" component={DetailsScreen} />
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: 'Trang chu' }}
+        />
+        <Stack.Screen
+          name="hoidanit"
+          component={DetailsScreen}
+          options={({ route }: { route: any }) => ({
+            headerTitle: `xem chi tiet ${route?.params?.userId ?? ''}`,
+
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
 
