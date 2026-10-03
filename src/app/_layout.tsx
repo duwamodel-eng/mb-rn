@@ -19,7 +19,7 @@ const RootLayout = () => {
         },
       }}
     >
-      <Stack.Screen name='index'
+      <Stack.Screen name='(tabs)'
         options={{ headerTitle: 'Trang Chu' }}
       />
       <Stack.Screen name='product/index'
